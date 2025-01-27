@@ -1,0 +1,25 @@
+import pandas as pd
+
+# Load the dataset
+df = pd.read_csv('sales_data.csv')
+
+# Display the first 5 rows
+df.head()
+
+# Display basic statistics for numerical columns
+df.describe()
+
+# Calculate total sales by region
+total_sales_by_region = df.groupby('Region')['Sales'].sum()
+total_sales_by_region
+
+# Find the most sold product based on quantity
+most_sold_product = df.groupby('Product')['Quantity'].sum().idxmax()
+most_sold_product
+
+# Calculate profit margin
+df['Profit Margin'] = (df['Profit'] / df['Sales']) * 100
+
+# Compute the average profit margin for each product
+average_profit_margin_by_product = df.groupby('Product')['Profit Margin'].mean()
+average_profit_margin_by_product
