@@ -1,0 +1,11 @@
+# Filter rows where sales are greater than 1000
+high_sales_df = df[df['Sales'] > 1000]
+
+# Filter sales records for the "East" region
+east_region_sales = df[df['Region'] == 'East']
+
+# Add a new column Profit_Per_Unit
+df['Profit_Per_Unit'] = df['Profit'] / df['Quantity']
+
+# Add a new column High_Sales based on Sales being greater than 1000
+df['High_Sales'] = df['Sales'].apply(lambda x: 'Yes' if x > 1000 else 'No')
