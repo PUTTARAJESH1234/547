@@ -1,0 +1,17 @@
+import matplotlib.pyplot as plt
+
+# Group by Account_Type and calculate the total sum of Transaction_Amount
+total_transaction_amount_by_account = df.groupby('Account_Type')['Transaction_Amount'].sum()
+
+# Plot a bar chart
+total_transaction_amount_by_account.plot(kind='bar', color='skyblue', title='Total Transaction Amount by Account Type')
+plt.ylabel('Total Transaction Amount')
+plt.xlabel('Account Type')
+plt.show()
+# Group by Branch and calculate the number of transactions per branch
+transactions_per_branch = df['Branch'].value_counts()
+
+# Plot a pie chart
+transactions_per_branch.plot(kind='pie', autopct='%1.1f%%', startangle=90, title='Percentage of Transactions per Branch')
+plt.ylabel('')  # Hide the y-axis label
+plt.show()
