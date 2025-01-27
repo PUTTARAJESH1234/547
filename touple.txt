@@ -1,0 +1,32 @@
+my_list = [10, 20, 30, 40, 50]
+
+# Accessing elements by index
+first_element = my_list[0]  # Accesses the first element
+third_element = my_list[2]  # Accesses the third element
+last_element = my_list[-1]  # Accesses the last element (negative indexing)
+
+print("First Element:", first_element)
+print("Third Element:", third_element)
+print("Last Element:", last_element)
+
+my_tuple = (1, 2, 3, 4, 5)
+
+# Accessing elements by index
+second_element = my_tuple[1]  # Accesses the second element
+fourth_element = my_tuple[3]  # Accesses the fourth element
+last_element = my_tuple[-1]  # Accesses the last element (negative indexing)
+
+print("Second Element:", second_element)
+print("Fourth Element:", fourth_element)
+print("Last Element:", last_element)
+
+my_dict = {"a": 100, "b": 200, "c": 300, "d": 400, "e": 500}
+
+# Accessing values using keys
+value_b = my_dict["b"]  # Accesses the value for key "b"
+value_d = my_dict["d"]  # Accesses the value for key "d"
+value_e = my_dict["e"]  # Accesses the value for key "e"
+
+print("Value for key 'b':", value_b)
+print("Value for key 'd':", value_d)
+print("Value for key 'e':", value_e)
