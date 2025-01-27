@@ -1,0 +1,5 @@
+sorted_df = df.sort_values(by='Account_Balance', ascending=False)
+top_10_rows = sorted_df.head(10)
+print(top_10_rows)
+df['Transaction_Rank'] = df.groupby('Branch')['Transaction_Amount'].rank(ascending=False, method='min')
+print(df)
