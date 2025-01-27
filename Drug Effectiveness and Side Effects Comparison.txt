@@ -1,0 +1,67 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the dataset (replace 'your_dataset.csv' with the actual dataset file)
+df = pd.read_csv('your_dataset.csv')
+
+# Display the first few rows to inspect the data
+print(df.head())
+# Check for missing values
+print(df.isnull().sum())
+
+# Check for duplicates
+print(df.duplicated().sum())
+
+# Drop rows with missing values (or handle them as appropriate)
+df = df.dropna()
+
+# Remove duplicates if any
+df = df.drop_duplicates()
+# Group by Product and Region, then calculate the average Effectiveness
+avg_effectiveness = df.groupby(['Product', 'Region'])['Effectiveness'].mean().unstack()
+
+# Plot the bar plot
+plt.figure(figsize=(10, 6))
+avg_effectiveness.plot(kind='bar', stacked=False, figsize=(12, 6))
+plt.title('Average Effectiveness for Each Drug Across Different Regions')
+plt.xlabel('Product')
+plt.ylabel('Average Effectiveness')
+plt.xticks(rotation=45)
+plt.legend(title='Region', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.show()
+# Violin plot for Effectiveness and Side_Effects by Product
+plt.figure(figsize=(12, 6))
+sns.violinplot(x='Product', y='Effectiveness', data=df, inner="quart", palette="Set2")
+plt.title('Distribution of Effectiveness for Each Product')
+plt.xlabel('Product')
+plt.ylabel('Effectiveness')
+plt.xticks(rotation=45)
+plt.show()
+
+# Violin plot for Side Effects by Product
+plt.figure(figsize=(12, 6))
+sns.violinplot(x='Product', y='Side_Effects', data=df, inner="quart", palette="Set2")
+plt.title('Distribution of Side Effects for Each Product')
+plt.xlabel('Product')
+plt.ylabel('Side Effects')
+plt.xticks(rotation=45)
+plt.show()
+# Pairplot to visualize the relationships between Effectiveness, Side_Effects, and Marketing_Spend
+sns.pairplot(df[['Effectiveness', 'Side_Effects', 'Marketing_Spend']])
+plt.suptitle('Pairplot: Effectiveness, Side Effects, and Marketing Spend', y=1.02)
+plt.show()
+# Boxplot for Effectiveness across different trial periods
+plt.figure(figsize=(10, 6))
+sns.boxplot(x='Trial_Period', y='Effectiveness', data=df, palette='Set1')
+plt.title('Comparison of Effectiveness Across Different Trial Periods')
+plt.xlabel('Trial Period')
+plt.ylabel('Effectiveness')
+plt.show()
+# Regression plot to see the effect of Marketing_Spend on Effectiveness
+plt.figure(figsize=(10, 6))
+sns.regplot(x='Marketing_Spend', y='Effectiveness', data=df, scatter_kws={'s': 10}, line_kws={'color': 'red'})
+plt.title('Marketing Spend vs Drug Effectiveness')
+plt.xlabel('Marketing Spend')
+plt.ylabel('Effectiveness')
+plt.show()
