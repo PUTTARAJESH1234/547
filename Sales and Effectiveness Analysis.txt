@@ -1,0 +1,73 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the dataset (replace 'your_dataset.csv' with your actual dataset)
+df = pd.read_csv('your_dataset.csv')
+
+# Display the first few rows to understand the structure of the data
+print(df.head())
+# Check for missing values
+print(df.isnull().sum())
+
+# Check for duplicates
+print(df.duplicated().sum())
+
+# Drop rows with missing values or handle them (for simplicity, we drop)
+df = df.dropna()
+
+# Remove duplicates if any
+df = df.drop_duplicates()
+# Group by region and sum the sales
+region_sales = df.groupby('Region')['Sales'].sum()
+
+# Create a bar plot
+plt.figure(figsize=(10, 6))
+region_sales.plot(kind='bar', color='skyblue')
+plt.title('Total Sales per Region')
+plt.xlabel('Region')
+plt.ylabel('Total Sales')
+plt.xticks(rotation=45)
+plt.show()
+# Group by region and sum the sales
+region_sales = df.groupby('Region')['Sales'].sum()
+
+# Create a bar plot
+plt.figure(figsize=(10, 6))
+region_sales.plot(kind='bar', color='skyblue')
+plt.title('Total Sales per Region')
+plt.xlabel('Region')
+plt.ylabel('Total Sales')
+plt.xticks(rotation=45)
+plt.show()
+# Scatter plot between Marketing_Spend and Sales
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x='Marketing_Spend', y='Sales', data=df, color='green')
+plt.title('Relationship between Marketing Spend and Sales')
+plt.xlabel('Marketing Spend')
+plt.ylabel('Sales')
+plt.show()
+# Boxplot for drug effectiveness by age group
+plt.figure(figsize=(10, 6))
+sns.boxplot(x='Age_Group', y='Effectiveness', data=df, palette='Set2')
+plt.title('Drug Effectiveness Across Age Groups')
+plt.xlabel('Age Group')
+plt.ylabel('Effectiveness')
+plt.show()
+# Assuming 'Trial_Period' is a column representing the time period of the trials
+# and 'Product' represents different products in the dataset
+plt.figure(figsize=(12, 6))
+sns.lineplot(x='Trial_Period', y='Sales', hue='Product', data=df, marker='o')
+plt.title('Sales Trend for Each Product Over Different Trial Periods')
+plt.xlabel('Trial Period')
+plt.ylabel('Sales')
+plt.legend(title='Product', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.show()
+# Calculate the correlation matrix
+correlation_matrix = df[['Sales', 'Marketing_Spend', 'Effectiveness']].corr()
+
+# Plot the heatmap
+plt.figure(figsize=(8, 6))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt='.2f')
+plt.title('Correlation Heatmap between Sales, Marketing Spend, and Effectiveness')
+plt.show()
