@@ -1,0 +1,6 @@
+filtered_df_1 = df[df['Transaction_Amount'] <= 2000]
+print(filtered_df_1)
+filtered_df_2 = df[(df['Transaction_Type'] == 'Loan Payment') & (df['Account_Balance'] > 5000)]
+print(filtered_df_2)
+filtered_df_3 = df[df['Branch'] == 'Uptown']
+print(filtered_df_3)
